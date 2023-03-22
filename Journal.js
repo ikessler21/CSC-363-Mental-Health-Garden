@@ -1,4 +1,6 @@
-//constructor for an entry object
+/*CLASS ENTRY
+* contstuctor for new entry object
+*/
 class Entry {
     constructor(name, date, body) {
         if (name = null) {          //if the user does not have a name for entry, use date
@@ -13,10 +15,15 @@ class Entry {
     }
 }
 
-/*
-we need:
-array of entry objects
-
-whenever user makes new entry:
-array.push(Entry.constructor(name, date, body))
+/*CLASS ENTRY_DATABASE
+* stores entryDatabase array
+* allows new entry objects to be added to entryDatabase
 */
+class EntryDatabase {
+    entryDatabase = new [];
+
+    addEntry(Entry)
+    {
+        entryDatabase.push(Entry);
+    }
+}
