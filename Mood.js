@@ -28,7 +28,12 @@ class MoodTracker{
 
     checkin(mood, date){
         this.database.push(new MoodEntry(mood, date));
+        checkedIn = true;
 
+    }
+
+    reset(){
+        checkedIn = false;
     }
 
     // /**somehow runs on startup? */
