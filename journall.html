@@ -22,6 +22,18 @@
     text-decoration: underline;
   }
 
+  #journalButton {
+    background-image: url("journal\ button\ \(1\).png");
+    background-size: cover;
+    width: 200px;
+    height: 50px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: transparent;
+  }
+
     </style>
     
   </head>
@@ -29,7 +41,7 @@
   <body>
     
      
-    <button type="button" onclick="BeginJournalEntry()" id="journalButton">Journal</button>
+    <button type="button" onclick="BeginJournalEntry()" id="journalButton"></button>
     <div id="journalInput">
           <input type="input" class="form__field" placeholder="Name Of Journal" name="Journalname" id='Journal' required />
           <br><br> 
@@ -163,7 +175,13 @@ document.getElementById("journalFinished").style.display = "none";
 
 }
   
- 
+  function DeleteEntry(index)
+{
+  entriesList.splice(i, 1);
+
+  DisplayJournalEntry();
+
+}  
   function CreatePromet()
   {
     

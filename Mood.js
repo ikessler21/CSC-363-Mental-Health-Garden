@@ -1,8 +1,10 @@
 class MoodEntry{
+    mood = 0;
+    date;
 
-    constructor(mood,date){
+    constructor(mood){
         this.mood = mood;
-        this.date = date;
+        this.date = new Date();
 
     } 
 
@@ -19,6 +21,7 @@ class MoodEntry{
         }
 
     }
+    
 
 }
 
@@ -26,14 +29,15 @@ class MoodTracker{
     database = [];  //set of entries
     checkedIn = false;
 
-    checkin(mood, date){
-        this.database.push(new MoodEntry(mood, date));
-        checkedIn = true;
+    checkin(mood){
+        
+        this.database.push(new MoodEntry(mood));
+        this.checkedIn = true;
 
     }
 
     reset(){
-        checkedIn = false;
+        this.checkedIn = false;
     }
 
     // /**somehow runs on startup? */
@@ -56,7 +60,4 @@ class MoodTracker{
     //         this.database.push(new MoodEntry(0,previousdate))
     //     }
     // }
-
-
-
 }

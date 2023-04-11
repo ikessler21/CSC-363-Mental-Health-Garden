@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+        <script src = "Mood.js"> </script>
+        <script>
+            tracker = new MoodTracker();
+            function moodButton(num){
+                tracker.checkin(num)
+                // click one and all disappear
+                document.getElementById("blue").hidden = true;
+                document.getElementById("light_blue").hidden = true;
+                document.getElementById("yellow").hidden = true;
+                document.getElementById("light_green").hidden = true;
+                document.getElementById("green").hidden = true;
+            }
+        </script>
+        
+        <button type = "button" id = "blue" onclick="moodButton(1)">
+            <img src="images/blue icon.png" alt = "blue icon" style = "width:128px;height:128px;">
+        </button>
+        <button type =  "button" id = "light_blue" onclick="moodButton(2)">
+            <img src="images/light blue icon.png" alt = "light blue icon" style = "width:128px;height:128px;">
+        </button>
+        <button type =  "button" id = "yellow" onclick="moodButton(3)">
+            <img src="images/yellow icon.png" alt = "yellow icon" style = "width:128px;height:128px;">
+        </button>
+        <button type =  "button" id = "light_green"onclick="moodButton(4)">
+            <img src="images/light green icon.png" alt = "light green icon" style = "width:128px;height:128px;">
+        </button>
+        <button type =  "button" id = "green"onclick="moodButton(5)">
+            <img src="images/green icon.png" alt = "green icon" style = "width:128px;height:128px;">
+        </button>
+        <style>
+            body{ /*background image settings*/
+                background-image: url(images/background.png);
+                background-size: cover;
+                background-attachment: fixed;
+                background-repeat: no-repeat;
+                
+            }
+        </style>
+
+
+
+</html>
