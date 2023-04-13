@@ -1,43 +1,72 @@
 <!DOCTYPE html>
 <html>
-        <script src = "Mood.js"> </script>
-        <script>
-            tracker = new MoodTracker();
-            function moodButton(num){
-                tracker.checkin(num)
-                // click one and all disappear
-                document.getElementById("blue").hidden = true;
-                document.getElementById("light_blue").hidden = true;
-                document.getElementById("yellow").hidden = true;
-                document.getElementById("light_green").hidden = true;
-                document.getElementById("green").hidden = true;
-            }
-        </script>
+    <script src = "Mood.js"> </script>
+    <script>tracker = new MoodTracker();</script>
+    <section id="tracking">
+
+        <img class = "icon" src="images/blue icon.png" 
+        onclick="moodButton(1)" alt = "blue icon">
+        <img class = "icon" src="images/light blue icon.png" 
+        onclick="moodButton(2)" alt = "light blue icon">
+        <img class = "icon" src="images/yellow icon.png"
+        onclick="moodButton(3)" alt = "yellow icon">
+        <img class = "icon" src="images/light green icon.png" 
+        onclick="moodButton(4)" alt = "light green icon">
+        <img class = "icon" src="images/green icon.png" 
+        onclick="moodButton(5)" alt = "green icon">
+        <img id = "mt-help" src = "images/help mt.png" alt = "help button" style = "width:60px;height:30px;">
+        <!-- add onclick -->
+    </section>
+    
+    <section id = "main" hidden = true>
+        <img onclick="clicked()" src="images/mood - tracker button.png" alt="mood-tracker button" style = "width:325px">
+    </section>
+    <script>
+        function moodButton(num){
+            tracker.checkin(num)
+            document.getElementById("tracking").hidden = true;
+            document.getElementById("main").hidden = false;
+        }
+
+        // for testing
+        function clicked(){ 
+            document.getElementById("main").hidden = true;
+            document.getElementById("tracking").hidden = false;
+        }
+    </script>
+    
+    <style>
+        body{ /*background image settings*/
+            background-image: url(images/background.png);
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            
+        }
+        #tracking{
+            background-image: url(images/moodtracker\ panel.png);
+            background-size: cover;
+            position: absolute;
+            top: 55px;
+            left: 50px;
+            width: 450px;
+            height: 227px;
+
+        }
+        .icon{
+            position: relative;
+            top: 60px;
+            left: 10px;
+            /* width: 82px; */
+            height: 82px;
+        }
+        #mt-help{
+            position:absolute;
+            top: 180px;
+            right: 50px;
+        }
         
-        <button type = "button" id = "blue" onclick="moodButton(1)">
-            <img src="images/blue icon.png" alt = "blue icon" style = "width:64px;height:64px;">
-        </button>
-        <button type =  "button" id = "light_blue" onclick="moodButton(2)">
-            <img src="images/light blue icon.png" alt = "light blue icon" style = "width:64px;height:64px;">
-        </button>
-        <button type =  "button" id = "yellow" onclick="moodButton(3)">
-            <img src="images/yellow icon.png" alt = "yellow icon" style = "width:64px;height:64px;">
-        </button>
-        <button type =  "button" id = "light_green"onclick="moodButton(4)">
-            <img src="images/light green icon.png" alt = "light green icon" style = "width:64px;height:64px;">
-        </button>
-        <button type =  "button" id = "green"onclick="moodButton(5)">
-            <img src="images/green icon.png" alt = "green icon" style = "width:64px;height:64px;">
-        </button>
-        <style>
-            body{ /*background image settings*/
-                background-image: url(images/background.png);
-                background-size: cover;
-                background-attachment: fixed;
-                background-repeat: no-repeat;
-                
-            }
-        </style>
+    </style>
 
 
 

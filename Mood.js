@@ -12,12 +12,12 @@ class MoodEntry{
      (depends on how we want to interact w UI) */
     get mood(){
         switch(this.mood){
-            case 0: return "Image/color for null here";
-            case 1: return "Image/color for :(( here";
-            case 2: return "Image/color for :( here";
-            case 3: return "Image/color for :| here";
-            case 4: return "Image/color for :) here";
-            case 5: return "Image/color for :)) here";
+            default: return "Image/color for null here";
+            case 1: return "images/blue icon.png";
+            case 2: return "images/light blue icon.png";
+            case 3: return "images/yellow icon.png";
+            case 4: return "images/light green icon.png";
+            case 5: return "images/green icon.png";
         }
 
     }
