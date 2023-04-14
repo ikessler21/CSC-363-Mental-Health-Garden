@@ -2,8 +2,8 @@ class MoodEntry{
     mood = 0;
     date;
 
-    constructor(mood){
-        this.mood = mood;
+    constructor(m){
+        this.mood = m;
         this.date = new Date();
 
     } 

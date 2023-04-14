@@ -3,6 +3,7 @@
     <script src = "Mood.js"> </script>
     <script> 
         var tracker = new MoodTracker();
+        // var data = [];
     </script>
     <section id="tracking">
 
@@ -29,24 +30,27 @@
         <img  id = "trackerButton" onclick = trackerclick() src="images/mood - tracker button.png" alt="mood-tracker button" style = "width:325px">
     </section>
 
+
+<!-- add back button... -->
     <table id="moodRec" hidden="true">
         <!-- need default image for no data -->
             <tr>
                 <td><img class="slot"></td>
+                <!-- <td><img class="slot"></td>
                 <td><img class="slot"></td>
-                <td><img class="slot"></td>
-                <td><img class="slot"></td>
+                <td><img class="slot"></td> -->
             </tr>
-            <tr>
+            <!-- <tr>
                 <td><img class="slot"></td>
                 <td><img class="slot"></td>
                 <td><img class="slot"></td>
                 <td><img class="slot"></td>
-            </tr>
+            </tr> -->
         </table>
     <script>
         function moodButton(num){
             tracker.checkin(num)
+            // tracker.push(num);
             document.getElementById("tracking").hidden = true;
             document.getElementById("main").hidden = false;
         }
@@ -64,17 +68,30 @@
         }
         function assignImages(){
             var data = tracker.database;
+            
             var slots = document.getElementsByClassName("slot");
             for(i=0;i<data.length;i++){
                 // slots[i].src = data[i].mood; //somehow not generating string properly??? -> computer comfused
                 var img;
-                switch(data.mood){
-                default:  img= "images/blue icon.png";
-                case 1: img= "images/blue icon.png";
-                case 2: img= "images/light blue icon.png";
-                case 3: img= "images/yellow icon.png";
-                case 4: img= "images/light green icon.png";
-                case 5: img= "images/green icon.png";
+                switch(data[i].mood){
+                default:  
+                    img= "images/blue icon.png";
+                    break;
+                case 1: 
+                    img= "images/blue icon.png";
+                    break;
+                case 2: 
+                    img= "images/light blue icon.png";
+                    break;
+                case 3: 
+                    img= "images/yellow icon.png";
+                    break;
+                case 4: 
+                    img= "images/light green icon.png";
+                    break;
+                case 5: 
+                    img= "images/green icon.png";
+                    break;
                 }
                 slots[i].src = img;
 
