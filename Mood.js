@@ -10,17 +10,17 @@ class MoodEntry{
 
     /*consider moving switch to constructor/ swapping mplementation
      (depends on how we want to interact w UI) */
-    get mood(){
-        switch(this.mood){
-            default: return "Image/color for null here";
-            case 1: return "images/blue icon.png";
-            case 2: return "images/light blue icon.png";
-            case 3: return "images/yellow icon.png";
-            case 4: return "images/light green icon.png";
-            case 5: return "images/green icon.png";
-        }
+    // get mood(){
+    //     switch(this.mood){
+    //         default: return "images/blue icon.png";
+    //         case 1: return "images/blue icon.png";
+    //         case 2: return "images/light blue icon.png";
+    //         case 3: return "images/yellow icon.png";
+    //         case 4: return "images/light green icon.png";
+    //         case 5: return "images/green icon.png";
+    //     }
 
-    }
+    // }
     
 
 }
@@ -28,10 +28,11 @@ class MoodEntry{
 class MoodTracker{
     database = [];  //set of entries
     checkedIn = false;
+    //consider adding file parsing to constructor to save things
 
     checkin(mood){
-        
-        this.database.push(new MoodEntry(mood));
+        var m = new MoodEntry(mood)
+        this.database.push(m);
         this.checkedIn = true;
 
     }

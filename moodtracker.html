@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
     <script src = "Mood.js"> </script>
-    <script>tracker = new MoodTracker();</script>
+    <script> 
+        var tracker = new MoodTracker();
+    </script>
     <section id="tracking">
 
         <img class = "icon" src="images/blue icon.png" 
@@ -18,9 +20,30 @@
         <!-- add onclick -->
     </section>
     
-    <section id = "main" hidden = true>
-        <img onclick="clicked()" src="images/mood - tracker button.png" alt="mood-tracker button" style = "width:325px">
+    <section id = "main" hidden = "true">
+        <!-- <a href = "journall.html">
+            <img class = "mIcon" onclick = "clicked()" src = "images/journal button.png" alt = "Journal button" style = "width:200px;">
+        </a> -->
+        <img class = "mIcon" onclick = "clicked()" src = "images/journal button.png" alt = "Journal button" style = "width:200px;">
+        <img class = "mIcon" onclick = "clicked()" src = "images/help button.png" alt = "help button" style = "width:110px;left:32px;">
+        <img  id = "trackerButton" onclick = trackerclick() src="images/mood - tracker button.png" alt="mood-tracker button" style = "width:325px">
     </section>
+
+    <table id="moodRec" hidden="true">
+        <!-- need default image for no data -->
+            <tr>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+            </tr>
+            <tr>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+            </tr>
+        </table>
     <script>
         function moodButton(num){
             tracker.checkin(num)
@@ -33,11 +56,36 @@
             document.getElementById("main").hidden = true;
             document.getElementById("tracking").hidden = false;
         }
+        function trackerclick(){
+            document.getElementById("main").hidden = true;
+            document.getElementById("moodRec").hidden = false;
+            assignImages();
+
+        }
+        function assignImages(){
+            var data = tracker.database;
+            var slots = document.getElementsByClassName("slot");
+            for(i=0;i<data.length;i++){
+                // slots[i].src = data[i].mood; //somehow not generating string properly??? -> computer comfused
+                var img;
+                switch(data.mood){
+                default:  img= "images/blue icon.png";
+                case 1: img= "images/blue icon.png";
+                case 2: img= "images/light blue icon.png";
+                case 3: img= "images/yellow icon.png";
+                case 4: img= "images/light green icon.png";
+                case 5: img= "images/green icon.png";
+                }
+                slots[i].src = img;
+
+            }
+        }
     </script>
     
     <style>
         body{ /*background image settings*/
             background-image: url(images/background.png);
+            /* background-color: rgb(125, 217, 159); */
             background-size: cover;
             background-attachment: fixed;
             background-repeat: no-repeat;
@@ -65,8 +113,26 @@
             top: 180px;
             right: 50px;
         }
-        
+        #trackerButton{
+            position: absolute;
+            top: 100px;
+            left: 30px;
+
+        }
+        .mIcon{
+            position:relative;
+            top: 34px;
+            left: 22px;
+        }
+        .slot{
+            height: 82px;
+            width: 82px;
+        }
     </style>
+    
+    
+
+
 
 
 
