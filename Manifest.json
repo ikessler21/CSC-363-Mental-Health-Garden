@@ -1,5 +1,17 @@
+
 {
-    "Name": "Garden",
-    "Description": "Extension for regulating mental health",
-    "Version": "1.0"
+  "manifest_version": 2,
+  "name": "My Journal Extension",
+  "version": "1.0",
+  "description": "A simple journal extension",
+  "icons": {
+    "16": "rose1.jpg",
+        "48": "rose2.jpg",
+        "128": "rose3.jpg"
+  },
+  "browser_action": {
+   
+    "default_popup": "journall.html",
+    "default_title": "Garden"
+  }
 }
