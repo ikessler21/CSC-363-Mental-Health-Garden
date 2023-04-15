@@ -13,7 +13,7 @@ window.onload = function isWilted() {
       return false;
     }
   }
-  document.getElementById("wilt").innerHTML =isWilted();
+  //document.getElementById("wilt").innerHTML =isWilted();
   //in main html, on page load, check this value and set background accordingly
 
 /*CLASS ENTRY
