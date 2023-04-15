@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+    <script src = "Mood.js"> </script>
+    <script> 
+        var tracker = new MoodTracker();
+        // var data = [];
+    </script>
+    <section id="tracking">
+
+        <img class = "icon" src="images/blue icon.png" 
+        onclick="moodButton(1)" alt = "blue icon">
+        <img class = "icon" src="images/light blue icon.png" 
+        onclick="moodButton(2)" alt = "light blue icon">
+        <img class = "icon" src="images/yellow icon.png"
+        onclick="moodButton(3)" alt = "yellow icon">
+        <img class = "icon" src="images/light green icon.png" 
+        onclick="moodButton(4)" alt = "light green icon">
+        <img class = "icon" src="images/green icon.png" 
+        onclick="moodButton(5)" alt = "green icon">
+        <img id = "mt-help" src = "images/help mt.png" alt = "help button" style = "width:60px;height:30px;">
+        <!-- add onclick -->
+    </section>
+    
+    <section id = "main" hidden = "true">
+        <!-- <a href = "journal/journal.html">
+            <img class = "mIcon" onclick = "clicked()" src = "images/journal button.png" alt = "Journal button" style = "width:200px;">
+        </a> -->
+        <img class = "mIcon" onclick = "clicked()" src = "images/journal button.png" alt = "Journal button" style = "width:200px;">
+        <img class = "mIcon" onclick = "clicked()" src = "images/help button.png" alt = "help button" style = "width:110px;left:32px;">
+        <img  id = "trackerButton" onclick = trackerclick() src="images/mood - tracker button.png" alt="mood-tracker button" style = "width:325px">
+    </section>
+
+
+    <img id = "mRecBack"  onclick = "recordsBack()" src="images/yellow icon.png" hidden="true">
+    <section id = "moodRec" hidden="true">
+        <!-- stand-in back button -->
+        <table>
+        <!-- need default image for no data -->
+            <tr>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+            </tr>
+            <tr>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+            </tr>
+            <tr>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+            </tr>
+            <tr>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+            </tr>
+            <tr>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+            </tr>
+            <tr>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+            </tr>
+        </table>
+    </section>
+    <script>
+        function moodButton(num){
+            tracker.checkin(num)
+            // tracker.push(num);
+            document.getElementById("tracking").hidden = true;
+            document.getElementById("main").hidden = false;
+            // var slots = document.getElementsByClassName("slot");
+            // if((slots.length % 4) == 0){
+
+            // }
+        }
+
+        // for testing
+        function clicked(){ 
+            document.getElementById("main").hidden = true;
+            document.getElementById("tracking").hidden = false;
+        }
+        function trackerclick(){
+            document.getElementById("main").hidden = true;
+            document.getElementById("moodRec").hidden = false;
+            document.getElementById("mRecBack").hidden = false;
+            assignImages();
+
+        }
+        function recordsBack(){
+            document.getElementById("moodRec").hidden = true;
+            document.getElementById("mRecBack").hidden = true;
+            document.getElementById("main").hidden = false;
+        }
+        function assignImages(){
+            var data = tracker.database;
+            
+            var slots = document.getElementsByClassName("slot");
+            for(i=0;i<data.length && i<slots.length ;i++){
+                // slots[i].src = data[i].mood; //somehow not generating string properly??? -> computer comfused
+                var img;
+                switch(data[i].mood){
+                default:  
+                    img= "images/blue icon.png";
+                    break;
+                case 1: 
+                    img= "images/blue icon.png";
+                    break;
+                case 2: 
+                    img= "images/light blue icon.png";
+                    break;
+                case 3: 
+                    img= "images/yellow icon.png";
+                    break;
+                case 4: 
+                    img= "images/light green icon.png";
+                    break;
+                case 5: 
+                    img= "images/green icon.png";
+                    break;
+                }
+                slots[i].src = img;
+
+            }
+        }
+    </script>
+    
+    <style>
+        body{ /*background image settings*/
+            background-image: url(images/background.png);
+            /* background-color: rgb(125, 217, 159); */
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            
+        }
+        #tracking{
+            background-image: url(images/moodtracker\ panel.png);
+            background-size: cover;
+            position: absolute;
+            top: 55px;
+            left: 50px;
+            width: 450px;
+            height: 227px;
+
+        }
+        .icon{
+            position: relative;
+            top: 60px;
+            left: 10px;
+            /* width: 82px; */
+            height: 82px;
+        }
+        #mt-help{
+            position:absolute;
+            top: 180px;
+            right: 50px;
+        }
+        #trackerButton{
+            position: absolute;
+            top: 100px;
+            left: 30px;
+
+        }
+        .mIcon{
+            position:relative;
+            top: 34px;
+            left: 22px;
+        }
+        .slot{
+            position: relative;
+            top: 10px;
+            left: 10px;
+            height: 82px;
+            width: 82px;
+        }
+        #moodRec{
+            background-image: url(images/past\ mt\ entries\ panel.png);
+            background-size: cover;
+            position: absolute;
+            top: 45px;
+            left: 45px;
+            height: 600px;
+            width: 452px;
+        }
+        #mRecBack{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 40px;
+        }
+    </style>
+    
+    
+
+
+
+
+
+</html>
