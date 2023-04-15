@@ -1,7 +1,7 @@
 /*IS_WILTED
 * if it's been 7 days, then function will return true value to indicate flowers are wilted
 */
-window.onload = function isWilted() {
+function isWilted() {
     var compareDate = EntryDatabase.entryDatabase[EntryDatabase.entryDatabase.length - 1];
     var diff = Math.abs(new Date() - compareDate);
     if (diff > 7)
@@ -13,7 +13,10 @@ window.onload = function isWilted() {
       return false;
     }
   }
+<<<<<<< HEAD:journal.js
   //document.getElementById("wilt").innerHTML =isWilted();
+=======
+>>>>>>> a8ab4b24542f25f28b912d3d2fb01be3b1f1c3d1:journal/journal.js
   //in main html, on page load, check this value and set background accordingly
 
 /*CLASS ENTRY
@@ -47,5 +50,4 @@ class EntryDatabase {
         timeToRain = true;
     }
 }
-document.getElementById("timeToRain").innerHTML =timeToRain;
 //if true, in main html call rain function

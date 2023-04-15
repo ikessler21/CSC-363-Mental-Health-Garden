@@ -41,24 +41,4 @@ class MoodTracker{
         this.checkedIn = false;
     }
 
-    // /**somehow runs on startup? */
-    // checkIn(){
-    //     if(!checkedIn){
-    //         /** UI interaction to get info from user */
-    //         mood;
-    //         date;
-    //         this.database.push(new MoodEntry(mood, date));
-    //     }
-    // }
-
-    // /**reset/run at midnight? */
-    // reset(){
-    //     if(checkedIn){
-    //         this.checkedIn = false;
-    //     }
-    //     else {
-    //         previousdate; // remove later once defined
-    //         this.database.push(new MoodEntry(0,previousdate))
-    //     }
-    // }
 }
