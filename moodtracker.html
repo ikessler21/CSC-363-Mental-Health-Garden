@@ -32,27 +32,65 @@
 
 
 <!-- add back button... -->
-    <table id="moodRec" hidden="true">
+    <img id = "mRecBack"  onclick = "recordsBack()" src="images/yellow icon.png" hidden="true">
+    <section id = "moodRec" hidden="true">
+        <!-- stand-in back button -->
+        <table>
         <!-- need default image for no data -->
             <tr>
                 <td><img class="slot"></td>
-                <!-- <td><img class="slot"></td>
                 <td><img class="slot"></td>
-                <td><img class="slot"></td> -->
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
             </tr>
-            <!-- <tr>
+            <tr>
                 <td><img class="slot"></td>
                 <td><img class="slot"></td>
                 <td><img class="slot"></td>
                 <td><img class="slot"></td>
-            </tr> -->
+                <td><img class="slot"></td>
+            </tr>
+            <tr>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+            </tr>
+            <tr>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+            </tr>
+            <tr>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+            </tr>
+            <tr>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+                <td><img class="slot"></td>
+            </tr>
         </table>
+    </section>
     <script>
         function moodButton(num){
             tracker.checkin(num)
             // tracker.push(num);
             document.getElementById("tracking").hidden = true;
             document.getElementById("main").hidden = false;
+            // var slots = document.getElementsByClassName("slot");
+            // if((slots.length % 4) == 0){
+
+            // }
         }
 
         // for testing
@@ -63,14 +101,20 @@
         function trackerclick(){
             document.getElementById("main").hidden = true;
             document.getElementById("moodRec").hidden = false;
+            document.getElementById("mRecBack").hidden = false;
             assignImages();
 
+        }
+        function recordsBack(){
+            document.getElementById("moodRec").hidden = true;
+            document.getElementById("mRecBack").hidden = true;
+            document.getElementById("main").hidden = false;
         }
         function assignImages(){
             var data = tracker.database;
             
             var slots = document.getElementsByClassName("slot");
-            for(i=0;i<data.length;i++){
+            for(i=0;i<data.length && i<slots.length ;i++){
                 // slots[i].src = data[i].mood; //somehow not generating string properly??? -> computer comfused
                 var img;
                 switch(data[i].mood){
@@ -142,8 +186,26 @@
             left: 22px;
         }
         .slot{
+            position: relative;
+            top: 10px;
+            left: 10px;
             height: 82px;
             width: 82px;
+        }
+        #moodRec{
+            background-image: url(images/past\ mt\ entries\ panel.png);
+            background-size: cover;
+            position: absolute;
+            top: 45px;
+            left: 45px;
+            height: 600px;
+            width: 452px;
+        }
+        #mRecBack{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 40px;
         }
     </style>
     
