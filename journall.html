@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JournalButton</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      .container {
+        background-image: url("journaltextbox.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: relative;
+        width: 100%;
+        height: 37.5rem; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      
+      
+      #deleteButton{
+        
+        border: none; 
+        color: black;
+        background-color: transparent;
+        font-size: 28.7px; 
+        cursor: pointer;
+
+      }
+    
+    
+      #journalInput {
+        display: none;
+
+        }
+        
+   #NewJournalBun{
+    display: none;
+   }
+   
+   #Old-Entries{
+    display: none;
+  }
+  .line {
+    text-decoration: underline;
+  }
+  
+  
+
+  #journalButton {
+    background-image: url("journal\ button\ \(1\).png");
+    background-size: cover;
+    width: 200px;
+    height: 50px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: transparent;
+    margin-top: 50px;
+    margin-right: 900px;
+  }
+ 
+  #text {
+    
+    background-size: cover;
+    
+   
+  
+    background: rgb(208, 190, 221);
+  }
+  
+    
+     #journalInput {
+        display: none;
+
+        }
+  
+  #Journal
+  {
+    background-size: cover;
+    
+   
+  
+    background: rgb(208, 190, 221);
+  }
+  
+ 
+
+    </style>
+    
+  </head>
+  
+  <body>
+    <div class="container">
+    
+     
+    <button type="button" onclick="BeginJournalEntry()" id="journalButton"></button>
+    <div id="journalInput">
+          <input type="input" class="form__field" placeholder="Name Of Journal" name="Journalname" id='Journal' required />
+          <br><br> 
+          <textarea id="text" name="text" placeholder="Begin Journal....."  rows="20" cols="50"></textarea><br><br>
+         
+          <button id="submit-btn" onclick="SubmitEntry()">Submit</button>
+          <button id="promptButton" onclick="PromptJournalEntry()">Prompt</button>
+         
+      </div>
+      
+      <div id="journalFinished" style = "display:none;"> 
+        
+        <p> Congratulations You Have Completed Your Journal</p> 
+        <button id="NewJournalBun" onclick="DisplayJournalEntry()"> Past Entries</button> 
+      </div>
+
+        <div 
+        id="Old-Entries">
+          <h2>Past Entries</h2>
+        <ol id="List_Jorunal"></ol>
+        
+        
+        <div  id ="delete-Entry">
+        </div>
+      <div 
+      id = "Old-Journal">
+    
+      <button id="NewJournalBTn" onclick="NewJournal()"> New Journal</button> 
+
+       
+    </div>
+   </div>
+    <script>
+    
+     
+
+
+function PromptJournalEntry() {
+
+  let continueJournaling = true;
+  //User is given instruction on how to get prompt
+  let promptMessage = "Click Ok to get prompt and Click Cancel when done";
+ //This is so we can ittreate through the array of prompts
+  let i = 0;
+  //Store the prompt in a array
+  prompts =["What is one goal you want to achieve this week?",
+  "Describe a memorable moment you experienced recently.",
+  "What is something new you learned today?",
+  "List three things you are grateful for.",
+  "What was the highlight of your day?",
+  "How did you overcome a challenge you faced today?",
+  "What is one way you can show kindness to someone else today?",
+  "What is a positive change you can make in your daily routine?",
+  "Describe an activity or hobby you enjoy doing in your free time.",
+  "How do you plan to take care of yourself today?" ]
+  //while the user is clicking ok we give them diffrent prompts
+  while (continueJournaling == true) {
+    continueJournaling = confirm(promptMessage);
+
+    if(continueJournaling){
+    promptMessage = prompts[i];
+    i++;
+    if(prompts == prompts.length)
+    {
+      promptMessage = "You have reached the end of the prompts (CLICK CANCEL TO EXIT)"
+    }
+    }
+  }
+}
+  
+    
+
+
+  
+
+
+      //create an epty array to store user journal entries
+      const entries=[];
+      
+      function SubmitEntry()
+      {
+        // this gets user input so we can display it when they click on past entries
+  const name = document.getElementById("Journal").value;
+  const text = document.getElementById("text").value;
+        
+        // this creats a new object timestamp which tells  current date and time
+const timestamp = new Date();
+
+const newJournalBtn = document.getElementById("NewJournalBun");
+  newJournalBtn.style.display = "block";
+
+//we add  all the objects we created in to the array
+entries.push({ name: name, text: text, timestamp: timestamp });
+
+
+ //hides the journal entry  and outputs a message for user after they submit
+ document.getElementById("journalFinished").style.display = "block";
+
+
+// displays the past entries button
+ document.getElementById("journalInput").style.display = "none";
+//we clear the the old entries so users can start a new entry
+const oldNameEntries = document.getElementById("Journal").value="";
+const  oldTextEntries= document.getElementById("text").value="";
+
+      } 
+
+
+
+
+
+
+      
+      //when users clicks journal it will hide the journal button and show the 
+      //two text boxes for user to input the name of journal and start jorunaling
+      function BeginJournalEntry()
+      { 
+        let journalInput = document.getElementById("journalInput").style.display = "block";
+        let journalButton = document.getElementById("journalButton").style.display = "none";
+      }
+
+
+      
+
+function NewJournal()
+{
+
+document.getElementById("Old-Journal").style.display = "none";
+document.getElementById("journalInput").style.display = "block";
+document.getElementById("Old-Entries").style.display = "none";
+
+}
+  
+//this function shows the user there list of journal entries
+function DisplayJournalEntry()
+{
+
+ // hides message after the user starts a new journal entry
+const journalmessage = document.getElementById("journalFinished");
+journalmessage.style.display = "none";
+
+
+
+
+
+//Thsi get the epty entrie list we created in the html file
+const entriesList = document.getElementById("List_Jorunal");
+
+// Clear the existing entries 
+  entriesList.innerHTML = "";
+
+// Iterate over the entries array and add each entry to the list
+for (i =0; i< entries.length; i++) {
+
+   entry = entries[i];
+
+
+// Create a new list item
+const ListInput = document.createElement("li");
+
+// this adds the entry the diffrent component like the name and journal and 
+//and the time it was written to the list 
+// if user does not enter the journal name then the entry wil use the date as a placeholder
+
+ListInput.innerHTML = `
+<span class="line">${entry.name ? entry.name : entry.timestamp.toLocaleDateString()}</span>
+<br>
+<span >${entry.text ? entry.text : "NO ENTRY"}</span>
+<br>
+
+<strong>${entry.timestamp.toLocaleString()}</strong>
+<button id="deleteButton" class="delete-btn" onclick="DeleteEntry(${entries.indexOf(entry)})">
+  <i class="fa fa-trash"></i>
+`;
+// Add the list item to the entries list
+entriesList.appendChild(ListInput);
+
+
+
+
+}
+let Old =document.getElementById("Old-Entries").style.display = "block";
+
+let jor = document.getElementById("Old-Journal").style.display = "block";
+ 
+
+
+document.getElementById("journalFinished").style.display = "none";
+
+}
+  
+  function DeleteEntry(index)
+{
+  
+  if (index > -1) {
+    entries.splice(index, 1);
+  }
+
+
+  DisplayJournalEntry();
+
+}  
+  
+  
+  
+ </script>
+        
+  </div>
+</body>
+</html>
