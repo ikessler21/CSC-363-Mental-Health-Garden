@@ -39,9 +39,13 @@ class Entry {
 */
 class EntryDatabase {
     entryDatabase = new [];
+    timeToRain = false;
 
     addEntry(Entry)
     {
         entryDatabase.push(Entry);
+        timeToRain = true;
     }
 }
+document.getElementById("timeToRain").innerHTML =timeToRain;
+//if true, in main html call rain function
