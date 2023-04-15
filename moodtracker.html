@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
+    <body id = "back" onload="checkedIn()">
     <script src = "Mood.js"> </script>
+    <script src = "journal.js"></script>
     <script> 
         var tracker = new MoodTracker();
         // var data = [];
@@ -22,10 +24,10 @@
     </section>
     
     <section id = "main" hidden = "true">
-        <!-- <a href = "journal/journal.html">
+        <a href = "journall.html">
             <img class = "mIcon" onclick = "clicked()" src = "images/journal button.png" alt = "Journal button" style = "width:200px;">
-        </a> -->
-        <img class = "mIcon" onclick = "clicked()" src = "images/journal button.png" alt = "Journal button" style = "width:200px;">
+        </a>
+        <!-- <img class = "mIcon" onclick = "clicked()" src = "images/journal button.png" alt = "Journal button" style = "width:200px;"> -->
         <img class = "mIcon" onclick = "clicked()" src = "images/help button.png" alt = "help button" style = "width:110px;left:32px;">
         <img  id = "trackerButton" onclick = trackerclick() src="images/mood - tracker button.png" alt="mood-tracker button" style = "width:325px">
     </section>
@@ -83,13 +85,18 @@
     <script>
         function moodButton(num){
             tracker.checkin(num)
-            // tracker.push(num);
             document.getElementById("tracking").hidden = true;
             document.getElementById("main").hidden = false;
-            // var slots = document.getElementsByClassName("slot");
-            // if((slots.length % 4) == 0){
-
-            // }
+            //call rain here
+        }
+        function checkedIn(){
+            if(tracker.checkin){
+                document.getElementById("tracking").hidden = true;
+                document.getElementById("main").hidden = false;
+            }
+            if(isWilted()){
+               document.getElementById("back").style = "background-image: url(images/background\ wilted.png);";
+            }
         }
 
         // for testing
@@ -114,7 +121,6 @@
             
             var slots = document.getElementsByClassName("slot");
             for(i=0;i<data.length && i<slots.length ;i++){
-                // slots[i].src = data[i].mood; //somehow not generating string properly??? -> computer comfused
                 var img;
                 switch(data[i].mood){
                 default:  
@@ -207,7 +213,7 @@
             width: 40px;
         }
     </style>
-    
+    </body>
     
 
 
