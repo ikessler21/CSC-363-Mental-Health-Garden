@@ -2,7 +2,7 @@
 * if it's been 7 days, then function will return true value to indicate flowers are wilted
 */
 function isWilted() {
-    var compareDate = EntryDatabase.entryDatabase[EntryDatabase.entryDatabase.length - 1];
+    var compareDate = EntryDatabase.entryDatabase[EntryDatabase.entryDatabase.size() - 1];
     var diff = Math.abs(new Date() - compareDate);
     if (diff > 7)
     {
