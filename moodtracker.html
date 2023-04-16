@@ -1,8 +1,39 @@
 <!DOCTYPE html>
+
+<!--rain aspect coding source: Sylvain Saurel at https://www.youtube.com/watch?v=ni2Sm_j-PjU -->
+<html>
+<script src = "rain.js"> </script>
+ <head>
+  <style>
+   html {height: 100%; width:100%}
+
+   .drop {
+    background: #bec4ef;
+    width: 1px;
+    height: 89px;
+    position: absolute;
+    bottom: 200px;
+    -webkit-animation: fall .63s linear infinite;
+    -moz-animation: fall .63s linear infinite;
+   }
+   
+   @-webkit-keyframes fall { to {margin-top: 900px;}}
+   @-moz-keyframes fall { to {margin-top: 900px;}}
+   
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <body onmousedown="createRain(isRaining)"></body>
+    <section id="rain" class="rain"></section>
+   </body>
+ </head>
+</html>
+<!--end rain aspect-->
+
 <html>
     <body id = "back" onload="checkedIn()">
     <script src = "Mood.js"> </script>
     <script src = "journal.js"></script>
+    <script src = "rain.js"></script>
     <script> 
         var tracker = new MoodTracker();
         // var data = [];
@@ -88,16 +119,15 @@
             tracker.checkin(num)
             document.getElementById("tracking").hidden = true;
             document.getElementById("main").hidden = false;
-            // createRain();
         }
         function checkedIn(){
-            if(tracker.checkin == true){
+            if(tracker.checkedIn){
                 document.getElementById("tracking").hidden = true;
                 document.getElementById("main").hidden = false;
             }
-            // if(isWilted()){
-            //    document.getElementById("back").style = "background-image: url(images/background\ wilted.png);";
-            // }
+            if(isWilted()){
+               document.getElementById("back").style = "background-image: url(images/background\ wilted.png);";
+            }
         }
 
         // for testing
@@ -110,7 +140,6 @@
             document.getElementById("moodRec").hidden = false;
             document.getElementById("mRecBack").hidden = false;
             assignImages();
-
         }
         function recordsBack(){
             document.getElementById("moodRec").hidden = true;
@@ -150,12 +179,13 @@
     </script>
     
     <style>
-        #back{ /*background image settings*/
+        body{ /*background image settings*/
             background-image: url(images/background.png);
             /* background-color: rgb(125, 217, 159); */
             background-size: cover;
             background-attachment: fixed;
             background-repeat: no-repeat;
+            
         }
         #tracking{
             background-image: url(images/moodtracker\ panel.png);
