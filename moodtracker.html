@@ -83,6 +83,7 @@
         </table>
     </section>
     <script>
+
         function moodButton(num){
             tracker.checkin(num)
             document.getElementById("tracking").hidden = true;
@@ -90,7 +91,7 @@
             //call rain here
         }
         function checkedIn(){
-            if(tracker.checkin){
+            if(tracker.checkedIn){
                 document.getElementById("tracking").hidden = true;
                 document.getElementById("main").hidden = false;
             }

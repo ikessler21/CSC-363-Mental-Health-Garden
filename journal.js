@@ -13,10 +13,7 @@ function isWilted() {
       return false;
     }
   }
-<<<<<<< HEAD:journal.js
   //document.getElementById("wilt").innerHTML =isWilted();
-=======
->>>>>>> a8ab4b24542f25f28b912d3d2fb01be3b1f1c3d1:journal/journal.js
   //in main html, on page load, check this value and set background accordingly
 
 /*CLASS ENTRY
