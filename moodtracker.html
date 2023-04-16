@@ -88,10 +88,10 @@
             tracker.checkin(num)
             document.getElementById("tracking").hidden = true;
             document.getElementById("main").hidden = false;
-            //call rain here
+            createRain();
         }
         function checkedIn(){
-            if(tracker.checkedIn){
+            if(tracker.checkin){
                 document.getElementById("tracking").hidden = true;
                 document.getElementById("main").hidden = false;
             }
