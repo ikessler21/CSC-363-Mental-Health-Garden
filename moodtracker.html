@@ -32,7 +32,7 @@
 <html>
     <body id = "back" onload="checkedIn()">
     <script src = "Mood.js"> </script>
-    <script src = "journal.js"></script>
+    <!-- <script src = "journal.js"></script> -->
     <script src = "rain.js"></script>
     <script> 
         var tracker = new MoodTracker();
@@ -119,6 +119,9 @@
             tracker.checkin(num)
             document.getElementById("tracking").hidden = true;
             document.getElementById("main").hidden = false;
+            var date = new Date();
+            document.cookie = "day=" + date.getDate() + ';';
+            document.cookie = "month=" + date.getMonth() + ';';
         }
         function checkedIn(){
             if(tracker.checkedIn){
@@ -128,6 +131,28 @@
             if(isWilted()){
                document.getElementById("back").style = "background-image: url(images/background\ wilted.png);";
             }
+        }
+        function isWilted(){
+            var today = new Date();
+            var decodedCookie = decodeURIComponent(document.cookie);
+            if(decodedCookie==""){
+                return false;
+            }
+            var cookies =  decodedCookie.split(';');
+            var day = cookies[0].split("=");
+            var month = cookies[1].split("=");
+            var days1 = (month*30) + day;
+            var days2 = (today.getMonth() *30) + today.getDate();
+            if (days2 - days1 >= 7 ){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+
+
+
         }
 
         // for testing
