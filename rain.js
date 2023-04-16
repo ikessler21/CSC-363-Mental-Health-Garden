@@ -1,13 +1,11 @@
 var nbDrop = 800;
-var isRaining = true;
+var isRaining;
 
 function randRange(maxNum, minNum) {
 return (Math.floor(Math.random(10) * (maxNum - minNum + 1)) + minNum);
 }
     
 function createRain(isRaining) {
-    if (isRaining)
-    {
     for (i = 0; i < nbDrop; i++) {
         var dropLeft = randRange(0, 3000);
         var dropTop = randRange(-1000, 1000);
@@ -16,7 +14,6 @@ function createRain(isRaining) {
         $('#drop' + i).css('top', dropTop); 
         }
     }   
-}
 
 function startRaining(){
     isRaining = true;
