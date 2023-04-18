@@ -22,7 +22,8 @@
    
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <body onmousedown="createRain(isRaining)"></body>
+  <!-- WARNING: activates when help clicked. -->
+    <body onmousedown="createRain(isRaining)"></body> 
     <section id="rain" class="rain"></section>
    </body>
  </head>
@@ -51,12 +52,20 @@
         <img class = "icon" src="images/green icon.png" 
         onclick="moodButton(5)" alt = "green icon">
         <img id = "mt-help" src = "images/help mt.png" alt = "help button" style = "width:60px;height:30px;">
-        <!-- add onclick -->
+        <!-- add onclick onclick = "trackerHelp()" -->
+    </section>
+    <section id = "mtHelp" hidden="true">
+        <!-- needs better text algning -->
+        <p id="help1"> 
+            Please indicate how you are feeling today by clicking one of the above flowers.
+        </p>
+
+
     </section>
     
     <section id = "main" hidden = "true">
         <a href = "journall.html">
-            <img class = "mIcon" onclick = "clicked()" src = "images/journal button.png" alt = "Journal button" style = "width:200px;">
+            <img class = "mIcon" src = "images/journal button.png" alt = "Journal button" style = "width:200px;">
         </a>
         <!-- <img class = "mIcon" onclick = "clicked()" src = "images/journal button.png" alt = "Journal button" style = "width:200px;"> -->
         <img class = "mIcon" onclick = "clicked()" src = "images/help button.png" alt = "help button" style = "width:110px;left:32px;">
@@ -159,6 +168,9 @@
         function clicked(){ 
             document.getElementById("main").hidden = true;
             document.getElementById("tracking").hidden = false;
+        }
+        function trackerHelp(){
+            document.getElementById("mtHelp").hidden = false;
         }
         function trackerclick(){
             document.getElementById("main").hidden = true;
@@ -266,6 +278,16 @@
             top: 10px;
             left: 10px;
             width: 40px;
+        }
+        #mtHelp{
+            background-image: url(Journaltextbox.png);
+            background-size: cover;
+            margin: auto;
+            position: relative;
+            top: 300px;
+            width: 300px;
+            height: 300px;
+            
         }
     </style>
     </body>
