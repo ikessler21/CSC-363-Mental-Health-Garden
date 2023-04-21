@@ -31,7 +31,7 @@
 <!--end rain aspect-->
 
 <html>
-    <body id = "back" onload="checkedIn()">
+    <body id = "back" class="b1" onload="checkedIn()">
     <script src = "Mood.js"> </script>
     <!-- <script src = "journal.js"></script> -->
     <script src = "rain.js"></script>
@@ -130,13 +130,14 @@
             document.getElementById("main").hidden = false;
             var date = new Date();
             localStorage.setItem("lastDate", date);
+            document.getElementById("back").className = "b1";
             // localStorage.setItem("checkin", "true");
         }
         function checkedIn(){
             // localStorage.clear()
             if(isWilted()){
                 //changing background isn't working for some reason...
-                document.getElementById("back").style = "background-image: url(images/background\ wilted.png);";
+                document.getElementById("back").className = "b2";
             }
             var checkin = localStorage.getItem("checkin");
             if (checkin == "true"){
@@ -219,8 +220,16 @@
     </script>
     
     <style>
-        #back{ /*background image settings*/
+        .b1{ /*background image settings*/
             background-image: url(images/background.png);
+            /* background-color: rgb(125, 217, 159); */
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            
+        }
+        .b2{ /*background image settings*/
+            background-image: url(images/background\ wilted.png);
             /* background-color: rgb(125, 217, 159); */
             background-size: cover;
             background-attachment: fixed;
