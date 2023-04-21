@@ -26,15 +26,25 @@ class MoodEntry{
 }
 
 class MoodTracker{
-    database = [];  //set of entries
-    checkedIn = false;
+    database = localStorage.getItem("entries");  //set of entries
     //consider adding file parsing to constructor to save things
 
-    checkin(mood){
-        var m = new MoodEntry(mood)
-        this.database.push(m);
-        this.checkedIn = true;
 
+    checkin(mood){
+        // var m = new MoodEntry(mood)
+        // this.database.push(m);
+        localStorage.setItem("checkin", "true");
+        var entries = localStorage.getItem("entries");
+        if(entries!=null) localStorage.setItem("entries", entries + "," + mood)
+        else localStorage.setItem("entries", mood)
+        this.database = localStorage.getItem("entries").split(',');
+
+
+        
+    }
+    checkedIn(){
+        if(localStorage.getItem("checkin") == "true") return true;
+        else return false;
     }
 
     reset(){

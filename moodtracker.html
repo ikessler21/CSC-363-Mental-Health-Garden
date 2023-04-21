@@ -129,39 +129,42 @@
             document.getElementById("tracking").hidden = true;
             document.getElementById("main").hidden = false;
             var date = new Date();
-            document.cookie = "day=" + date.getDate() + ';';
-            document.cookie = "month=" + date.getMonth() + ';';
+            localStorage.setItem("lastDate", date);
+            // localStorage.setItem("checkin", "true");
         }
         function checkedIn(){
-            if(tracker.checkedIn){
+            // localStorage.clear()
+            if(isWilted()){
+                //changing background isn't working for some reason...
+                document.getElementById("back").style = "background-image: url(images/background\ wilted.png);";
+            }
+            var checkin = localStorage.getItem("checkin");
+            if (checkin == "true"){
                 document.getElementById("tracking").hidden = true;
                 document.getElementById("main").hidden = false;
             }
-            if(isWilted()){
-               document.getElementById("back").style = "background-image: url(images/background\ wilted.png);";
-            }
         }
+        
         function isWilted(){
             var today = new Date();
-            var decodedCookie = decodeURIComponent(document.cookie);
-            if(decodedCookie==""){
+            var lastDate = localStorage.getItem("lastDate"); //test this
+            if (lastDate == null){
                 return false;
+            } 
+            lastDate = new Date(lastDate);
+            var timeDifference = today.getTime() - lastDate.getTime(); //in milliseconds
+
+            //checks for checkin reset
+            if(today.getMonth() != lastDate.getMonth() && today.getDate() != lastDate.getDate()){
+                localStorage.setItem("checkin", "false");
             }
-            var cookies =  decodedCookie.split(';');
-            var day = cookies[0].split("=");
-            var month = cookies[1].split("=");
-            var days1 = (month*30) + day;
-            var days2 = (today.getMonth() *30) + today.getDate();
-            if (days2 - days1 >= 7 ){
+            //checks for wilt (this part works)
+            if(timeDifference >= 1000*60*60*24*7){  //1000*60*60*24*7
                 return true;
             }
             else{
                 return false;
             }
-
-
-
-
         }
 
         // for testing
@@ -189,7 +192,7 @@
             var slots = document.getElementsByClassName("slot");
             for(i=0;i<data.length && i<slots.length ;i++){
                 var img;
-                switch(data[i].mood){
+                switch(Number(data[i])){
                 default:  
                     img= "images/blue icon.png";
                     break;
@@ -216,7 +219,7 @@
     </script>
     
     <style>
-        body{ /*background image settings*/
+        #back{ /*background image settings*/
             background-image: url(images/background.png);
             /* background-color: rgb(125, 217, 159); */
             background-size: cover;
@@ -287,6 +290,7 @@
             top: 300px;
             width: 300px;
             height: 300px;
+            
             
         }
     </style>
