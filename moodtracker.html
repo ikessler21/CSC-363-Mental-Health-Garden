@@ -52,16 +52,20 @@
         onclick="moodButton(4)" alt = "light green icon">
         <img class = "icon" src="images/green icon.png" 
         onclick="moodButton(5)" alt = "green icon">
-        <img id = "mt-help" src = "images/help mt.png" alt = "help button" style = "width:60px;height:30px;">
-        <!-- add onclick onclick = "trackerHelp()" -->
+        <img id = "mt-help"  onclick = "trackerHelp()" src = "images/help mt.png" alt = "help button" style = "width:60px;height:30px;">
     </section>
-    <section id = "mtHelp" hidden="true">
+    <section id = "mtHelp" class ="helpback" hidden="true">
         <!-- needs better text algning -->
-        <p id="help1"> 
+        <p class ="help"> 
+            This is a mood-tracking program.
             Please indicate how you are feeling today by clicking one of the above flowers.
         </p>
-
-
+    </section>
+    <section id = "mhelp" class = "helpback" hidden = "true">
+        <p class = "help">
+            The "Journal" button will let you write and view journal entries.
+            The "Mood Tracker" button will let you see how your mood has changed since using the app.
+        </p>
     </section>
     
     <section id = "main" hidden = "true">
@@ -69,7 +73,7 @@
             <img class = "mIcon" src = "images/journal button.png" alt = "Journal button" style = "width:200px;">
         </a>
         <!-- <img class = "mIcon" onclick = "clicked()" src = "images/journal button.png" alt = "Journal button" style = "width:200px;"> -->
-        <img class = "mIcon" onclick = "clicked()" src = "images/help button.png" alt = "help button" style = "width:110px;left:32px;">
+        <img class = "mIcon" onclick = "mainHelp()" src = "images/help button.png" alt = "help button" style = "width:110px;left:32px;">
         <img  id = "trackerButton" onclick = trackerclick() src="images/mood - tracker button.png" alt="mood-tracker button" style = "width:325px">
     </section>
 
@@ -128,6 +132,7 @@
         function moodButton(num){
             tracker.checkin(num)
             document.getElementById("tracking").hidden = true;
+            document.getElementById("mtHelp").hidden = true;
             document.getElementById("main").hidden = false;
             var date = new Date();
             localStorage.setItem("lastDate", date);
@@ -180,11 +185,16 @@
             document.getElementById("main").hidden = true;
             document.getElementById("tracking").hidden = false;
         }
+
         function trackerHelp(){
             document.getElementById("mtHelp").hidden = false;
         }
+        function mainHelp(){
+            document.getElementById("mhelp").hidden = false;
+        }
         function trackerclick(){
             document.getElementById("main").hidden = true;
+            document.getElementById("mhelp").hidden = true;
             document.getElementById("moodRec").hidden = false;
             document.getElementById("mRecBack").hidden = false;
             assignImages();
@@ -298,16 +308,19 @@
             left: 10px;
             width: 40px;
         }
-        #mtHelp{
+        .helpback{
             background-image: url(Journaltextbox.png);
             background-size: cover;
             margin: auto;
-            position: relative;
+            position: absolute;
             top: 300px;
+            left: 135px;
             width: 300px;
-            height: 300px;
-            
-            
+            height: 300px;  
+        }
+        .help{
+            text-align: center;
+            padding: 20px;
         }
     </style>
     </body>
