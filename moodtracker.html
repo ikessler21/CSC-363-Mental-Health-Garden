@@ -23,7 +23,8 @@
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <!-- WARNING: activates when help clicked. -->
-    <body onmousedown="createRain(isRaining)"></body> 
+    <body></body> 
+    <!--  onmousedown="createRain(isRaining)" -->
     <section id="rain" class="rain"></section>
    </body>
  </head>
@@ -39,7 +40,7 @@
         var tracker = new MoodTracker();
         // var data = [];
     </script>
-    <section id="tracking">
+    <section id="tracking" hidden = "true">
 
         <img class = "icon" src="images/blue icon.png" 
         onclick="moodButton(1)" alt = "blue icon">
@@ -131,6 +132,7 @@
             var date = new Date();
             localStorage.setItem("lastDate", date);
             document.getElementById("back").className = "b1";
+            createRain(isRaining)
             // localStorage.setItem("checkin", "true");
         }
         function checkedIn(){
@@ -141,8 +143,10 @@
             }
             var checkin = localStorage.getItem("checkin");
             if (checkin == "true"){
-                document.getElementById("tracking").hidden = true;
                 document.getElementById("main").hidden = false;
+            }
+            else{
+                document.getElementById("tracking").hidden = false;
             }
         }
         
@@ -156,11 +160,14 @@
             var timeDifference = today.getTime() - lastDate.getTime(); //in milliseconds
 
             //checks for checkin reset
-            if(today.getMonth() != lastDate.getMonth() && today.getDate() != lastDate.getDate()){
+            if((today.getMonth() != lastDate.getMonth()) || (today.getDate() != lastDate.getDate())){ // (new day?)
+                localStorage.setItem("checkin", "false");
+            }
+            else if(timeDifference>= 1000){ //backup (24 hours passed?)
                 localStorage.setItem("checkin", "false");
             }
             //checks for wilt (this part works)
-            if(timeDifference >= 1000*60*60*24*7){  //1000*60*60*24*7
+            if(timeDifference >= 1000){  //1000*60*60*24*7
                 return true;
             }
             else{
