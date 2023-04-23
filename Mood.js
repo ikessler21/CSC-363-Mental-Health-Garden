@@ -38,17 +38,11 @@ class MoodTracker{
         if(entries!=null) localStorage.setItem("entries", entries + "," + mood)
         else localStorage.setItem("entries", mood)
         this.database = localStorage.getItem("entries").split(',');
-
-
-        
     }
     checkedIn(){
         if(localStorage.getItem("checkin") == "true") return true;
         else return false;
     }
 
-    reset(){
-        this.checkedIn = false;
-    }
 
 }

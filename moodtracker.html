@@ -163,11 +163,11 @@
             if((today.getMonth() != lastDate.getMonth()) || (today.getDate() != lastDate.getDate())){ // (new day?)
                 localStorage.setItem("checkin", "false");
             }
-            else if(timeDifference>= 1000){ //backup (24 hours passed?)
+            else if(timeDifference>= 1000*60*60*24){ //backup (24 hours passed?)
                 localStorage.setItem("checkin", "false");
             }
             //checks for wilt (this part works)
-            if(timeDifference >= 1000){  //1000*60*60*24*7
+            if(timeDifference >= 1000*60*60*24*7){  //1000*60*60*24*7
                 return true;
             }
             else{
